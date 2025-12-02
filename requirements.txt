@@ -6,6 +6,7 @@ certifi
 pymongo[srv]==3.11
 scikit-learn
 dill
+mlflow
 pyaml
 
 ##-e .
