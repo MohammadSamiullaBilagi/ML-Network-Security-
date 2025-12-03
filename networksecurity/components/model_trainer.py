@@ -14,6 +14,10 @@ from networksecurity.utils.ml_utils.metric.classification_metric import get_clas
 
 import mlflow
 
+# import dagshub
+# dagshub.init(repo_owner='MohammadSamiullaBilagi', repo_name='ML-Network-Security-', mlflow=True)
+
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsClassifier
@@ -34,9 +38,9 @@ class ModelTrainer:
         
     def track_mlflow(self,best_model,classificationmetric):
         with mlflow.start_run():
-            f1_score=classificationmetric.f1_score()
-            precision_score=classificationmetric.precision_score()
-            recall_score=classificationmetric.recall_score()
+            f1_score=classificationmetric.f1_score
+            precision_score=classificationmetric.precision_score
+            recall_score=classificationmetric.recall_score
 
             mlflow.log_metric("f1_score",f1_score)
             mlflow.log_metric("precision",precision_score)
@@ -102,13 +106,17 @@ class ModelTrainer:
 
        self.track_mlflow(best_model,classification_test_metric)
 
+
        preprocessor=load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
 
        model_dir_path=os.path.dirname(self.model_trainer_config.trained_model_file_path)
        os.makedirs(model_dir_path,exist_ok=True)
 
        Network_model=NetworkModel(preprocessor=preprocessor,model=best_model)
-       save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
+       save_object(self.model_trainer_config.trained_model_file_path,obj=Network_model)
+
+        #model pusher, we can write code for pushing into S3 bucket as well
+       save_object("final_models/model.pkl",best_model)
 
        ## Model Trainer artifact
        model_trainer_artifact=ModelTrainerArtifact(trained_model_file_path=self.model_trainer_config.trained_model_file_path,
@@ -136,8 +144,10 @@ class ModelTrainer:
             )
 
             model=self.train_model(x_train,y_train,x_test,y_test)
+            return model
         except Exception as e:
             raise NetworkSecurityException(e,sys)
+
 
 
 
