@@ -14,8 +14,8 @@ from networksecurity.utils.ml_utils.metric.classification_metric import get_clas
 
 import mlflow
 
-# import dagshub
-# dagshub.init(repo_owner='MohammadSamiullaBilagi', repo_name='ML-Network-Security-', mlflow=True)
+import dagshub
+dagshub.init(repo_owner='MohammadSamiullaBilagi', repo_name='ML-Network-Security-', mlflow=True)
 
 
 from sklearn.linear_model import LogisticRegression

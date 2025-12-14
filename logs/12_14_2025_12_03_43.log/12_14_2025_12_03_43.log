@@ -1,0 +1,7 @@
+[2025-12-14 12:04:04,082] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2025-12-14 12:04:04,090] 107 dagshub - INFO - Accessing as MohammadSamiullaBilagi
+[2025-12-14 12:04:05,265] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/MohammadSamiullaBilagi/ML-Network-Security- "HTTP/1.1 200 OK"
+[2025-12-14 12:04:06,113] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2025-12-14 12:04:06,115] 107 dagshub - INFO - Initialized MLflow to track repo "MohammadSamiullaBilagi/ML-Network-Security-"
+[2025-12-14 12:04:06,116] 107 dagshub - INFO - Repository MohammadSamiullaBilagi/ML-Network-Security- initialized!
+[2025-12-14 12:04:35,047] 35 root - INFO - Start the Data Ingestion
